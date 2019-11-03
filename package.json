@@ -1,0 +1,26 @@
+{
+	"name": "devjobs",
+	"version": "1.0.0",
+	"description": "Portal DevJobs con NodeJS, Handlebars Mongoose",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon ./index"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/jorgebarcos/DevJobs.git"
+	},
+	"author": "Jorge Alberto Barcos",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/jorgebarcos/DevJobs/issues"
+	},
+	"homepage": "https://github.com/jorgebarcos/DevJobs#readme",
+	"dependencies": {
+		"express": "^4.17.1",
+		"express-handlebars": "^3.1.0"
+	},
+	"devDependencies": {
+		"nodemon": "^1.19.4"
+	}
+}
