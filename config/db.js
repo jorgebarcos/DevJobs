@@ -3,6 +3,7 @@ require('dotenv').config({ path: 'variables.env' });
 
 mongoose.connect(process.env.DATABASE, {
 	useNewUrlParser: true,
+	// Evita warning
 	useUnifiedTopology: true
 });
 
