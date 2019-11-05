@@ -33,7 +33,7 @@ module.exports = {
 		let html = '';
 		skills.forEach((skill) => {
 			html += `
-                <li>${skill}</li>
+                <li ${seleccionadas.includes(skill) ? ' class="activo"' : ''}>${skill}</li>
             `;
 		});
 
