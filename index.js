@@ -8,10 +8,15 @@ const router = require('./routes');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const bodyParser = require('body-parser');
 
 require('dotenv').config({ path: 'variables.env' });
 
 const app = express();
+
+// habiliar body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Habilitar hadlebars como view
 app.engine(
