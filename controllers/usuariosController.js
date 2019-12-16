@@ -26,6 +26,14 @@ exports.validarRegistro = (req, res, next) => {
 
 	if (errores) {
 		// si hay errores
+		req.flash('error', errores.map((error) => error.msg));
+
+		res.render('crear-cuenta', {
+			nombrePagina: 'Crea tu cuenta en devJobs',
+			tagline: 'Comienza a publicar tus vacantes gratis, solo debes crear una cuenta',
+			mensajes: req.flash()
+		});
+		return;
 	}
 
 	// Si toda la validación es correcta
