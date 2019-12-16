@@ -46,9 +46,11 @@ exports.crearUsuario = async (req, res, next) => {
 	// crear el usuario
 	const usuario = new Usuarios(req.body);
 
-	const nuevoUsuario = await usuario.save();
-
-	if (!nuevoUsuario) return next();
-
-	res.redirect('/iniciar-sesion');
+	try {
+		await usuario.save();
+		res.redirect('/iniciar-sesion');
+	} catch (error) {
+		req.flash('error', error);
+		res.redirect('/crear-cuenta');
+	}
 };
