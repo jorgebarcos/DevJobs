@@ -19,6 +19,7 @@
 	},
 	"homepage": "https://github.com/jorgebarcos/DevJobs#readme",
 	"dependencies": {
+		"bcrypt-nodejs": "0.0.3",
 		"concurrently": "^5.0.0",
 		"connect-mongo": "^3.1.2",
 		"cookie-parser": "^1.4.4",
