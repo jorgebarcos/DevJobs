@@ -29,5 +29,8 @@ module.exports = () => {
 
 	router.post('/iniciar-sesion', authController.autenticarUsuario);
 
+	// panel de administración
+	router.get('/administracion', authController.mostrarPanel);
+
 	return router;
 };
