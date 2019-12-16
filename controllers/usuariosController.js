@@ -8,6 +8,16 @@ exports.formCrearCuenta = (req, res) => {
 	});
 };
 
+exports.validarRegistro = (req, res, next) => {
+	req.checkBody('nombre', 'El Nombre es Obligatorio').notEmpty();
+
+	const errores = req.validationErrors();
+	
+	console.log(errores);
+
+	return;
+}
+
 
 exports.crearUsuario = async (req, res, next) => {
 	// crear el usuario
@@ -17,7 +27,7 @@ exports.crearUsuario = async (req, res, next) => {
 
 	if(!nuevoUsuario) return next();
 
-	
+
 
 	res.redirect('/iniciar-sesion')
 }
