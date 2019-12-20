@@ -10,21 +10,15 @@ module.exports = () => {
 	router.get('/', homeController.mostrarTrabajos);
 
 	// crear vacantes
-	router.get('/vacantes/nueva', 
-	authController.verificarUsuario,
-	vacantesController.formularioNuevaVacante
-	);
-	router.post('/vacantes/nueva',
-	authController.verificarUsuario,
-	vacantesController.agregarVacante);
+	router.get('/vacantes/nueva', authController.verificarUsuario, vacantesController.formularioNuevaVacante);
+	router.post('/vacantes/nueva', authController.verificarUsuario, vacantesController.agregarVacante);
 
 	// Mostrar Vacante (singular)
 	router.get('/vacantes/:url', vacantesController.mostrarVacante);
 
 	// Editar Vacante
-	router.get('/vacantes/editar/:url', authController.verificarUsuario,
-	vacantesController.formEditarVacante);
-	router.post('/vacantes/editar/:url', authController.verificarUsuario,vacantesController.editarVacante);
+	router.get('/vacantes/editar/:url', authController.verificarUsuario, vacantesController.formEditarVacante);
+	router.post('/vacantes/editar/:url', authController.verificarUsuario, vacantesController.editarVacante);
 
 	// Crear cuentas
 	router.get('/crear-cuenta', usuariosController.formCrearCuenta);
@@ -36,12 +30,12 @@ module.exports = () => {
 	router.post('/iniciar-sesion', authController.autenticarUsuario);
 
 	// panel de administración
-	router.get('/administracion', authController.verificarUsuario,  authController.mostrarPanel);
+	router.get('/administracion', authController.verificarUsuario, authController.mostrarPanel);
 
 	// Editar Perfil
-	router.get('/editar-perfil', 
-	authController.verificarUsuario, 
-	usuariosController.formEditarPerfil)
+	router.get('/editar-perfil', authController.verificarUsuario, usuariosController.formEditarPerfil);
+
+	router.post('/editar-perfil', authController.verificarUsuario, usuariosController.editarPerfil);
 
 	return router;
 };
