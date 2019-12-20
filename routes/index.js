@@ -11,14 +11,24 @@ module.exports = () => {
 
 	// crear vacantes
 	router.get('/vacantes/nueva', authController.verificarUsuario, vacantesController.formularioNuevaVacante);
-	router.post('/vacantes/nueva', authController.verificarUsuario, vacantesController.agregarVacante);
+	router.post(
+		'/vacantes/nueva',
+		authController.verificarUsuario,
+		vacantesController.validarVacante,
+		vacantesController.agregarVacante
+	);
 
 	// Mostrar Vacante (singular)
 	router.get('/vacantes/:url', vacantesController.mostrarVacante);
 
 	// Editar Vacante
 	router.get('/vacantes/editar/:url', authController.verificarUsuario, vacantesController.formEditarVacante);
-	router.post('/vacantes/editar/:url', authController.verificarUsuario, vacantesController.editarVacante);
+	router.post(
+		'/vacantes/editar/:url',
+		authController.verificarUsuario,
+		vacantesController.validarVacante,
+		vacantesController.editarVacante
+	);
 
 	// Crear cuentas
 	router.get('/crear-cuenta', usuariosController.formCrearCuenta);
