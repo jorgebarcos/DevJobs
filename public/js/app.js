@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		skillsSeleccionados();
 	}
 
-	const vacantesListado = documente.querySelector('.panel-administracion');
+	const vacantesListado = document.querySelector('.panel-administracion');
 
 	if(vacantesListado) {
 		vacantesListado.addEventListener('click', accionesListado)
@@ -71,9 +71,45 @@ const accionesListado = e => {
 	e.preventDefault();
 
 	if(e.target.dataset.eliminar) {
-		// eliminar por axios
-		
 
+
+
+		Swal.fire({
+			title: '¿Confirmar Eliminación?',
+			text: "Una vez eliminada, no se puede recuperar",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, Eliminar',
+			cancelButtonText: 'No, Cancelar'
+		  }).then((result) => {
+			if (result.value) {
+
+			// eliminar por axios
+
+	
+	
+			const url = `${location.origin}/vacantes/eliminar/${e.target.dataset.eliminar}`;
+
+			// Axios para eliminar el registro
+			axios.delete(url, { params: {url}})
+			.then(function(respuesta)  {
+
+				if(respuesta.status === 200) {
+					Swal.fire(
+						'Eliminado!',
+						respuesta.data,
+						'success'
+					  )
+
+					  // TODO: Eliminar del dom
+					  e.target.parentElement.parentElement.parentElement.removeChild(e.target.parentElement.parentElement);
+				}
+			})
+
+			}
+		  })
 	} else {
 		window.location.href = e.target.href
 	}
