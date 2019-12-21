@@ -119,7 +119,8 @@ exports.formEditarPerfil = (req, res) => {
 		nombrePagina: 'Edita tu perfil en devJobs',
 		usuario: req.user,
 		cerrarSesion: true,
-		nombre: req.user.nombre
+		nombre: req.user.nombre,
+		imagen: req.user.imagen
 	});
 };
 
@@ -171,6 +172,7 @@ exports.validarPerfil = (req, res, next) => {
 			usuario: req.user,
 			cerrarSesion: true,
 			nombre: req.user.nombre,
+			imagen: req.user.imagen,
 			mensajes: req.flash()
 		});
 	}
