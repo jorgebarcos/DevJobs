@@ -29,7 +29,7 @@ exports.agregarVacante = async (req, res) => {
 
 // muestra una vacante
 exports.mostrarVacante = async (req, res, next) => {
-	const vacante = await Vacante.findOne({ url: req.params.url });
+	const vacante = await Vacante.findOne({ url: req.params.url }).populate('autor');
 
 	// si no  hay resultados
 	if (!vacante) return next();
@@ -109,23 +109,19 @@ exports.eliminarVacante = async (req, res) => {
 
 	const vacante = await Vacante.findById(id);
 
-
-
-	if(verificarAutor(vacante, req.user)) {
+	if (verificarAutor(vacante, req.user)) {
 		// Todo bien, si es el usuario, eliminar
 		vacante.remove();
-		res.status(200).send('Vacante Eliminada Correctamente')
+		res.status(200).send('Vacante Eliminada Correctamente');
 	} else {
 		// no permitido
-		res.status(403).send('Error')
+		res.status(403).send('Error');
 	}
-
-
 };
 
 const verificarAutor = (vacante = {}, usuario = {}) => {
-	if(!vacante.autor.equals(usuario._id)) {
-		return false
-	} 
+	if (!vacante.autor.equals(usuario._id)) {
+		return false;
+	}
 	return true;
-}
+};
