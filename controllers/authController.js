@@ -78,6 +78,6 @@ exports.enviarToken = async (req, res) => {
 		archivo: 'reset'
 	})
 	// Todo Correcto
-	res.flash('correcto', 'Revisa tu email para las indicaciones');
-	res.redirect('/inicar-sesion');
+	req.flash('correcto', 'Revisa tu email para las indicaciones');
+	res.redirect('/iniciar-sesion');
 };
