@@ -81,3 +81,26 @@ exports.enviarToken = async (req, res) => {
 	req.flash('correcto', 'Revisa tu email para las indicaciones');
 	res.redirect('/iniciar-sesion');
 };
+
+
+// Valida si el token es valido y el usuario existe, muestra la vista
+
+exports.reestablecerPassword = async (req, res) => {
+	const usuario = await Usuarios.findOne({
+		token: req.params.token, 
+		expira: {
+			$gt : Date.now()
+		}
+	})
+
+	if(!usuario) {
+		req.flash('error', 'El formulario ya no es valido, intenta de nuevo');
+		return res.redirect('/reestablecer-password')
+
+	}
+
+	// Todo bien, mostrar el formulario
+	res.render('nuevo-password', {
+		nombrePagina: 'Nuevo Password'
+	})
+}
