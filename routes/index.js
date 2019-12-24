@@ -52,6 +52,8 @@ module.exports = () => {
 	// Resetear Password (Almacenar en la BD)
 	router.get('/reestablecer-password/:token',
 	authController.reestablecerPassword)
+	router.post('/reestablecer-password/:token',
+	authController.guardarPassword)
 
 
 

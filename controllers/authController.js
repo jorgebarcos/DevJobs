@@ -104,3 +104,34 @@ exports.reestablecerPassword = async (req, res) => {
 		nombrePagina: 'Nuevo Password'
 	})
 }
+
+// almacena el nuevo passwortd en la BD
+exports.guardarPassword = async (req, res) => {
+	const usuario = await Usuarios.findOne({
+		token: req.params.token, 
+		expira: {
+			$gt : Date.now()
+		}
+	})
+
+	// no existe el usuario o el token es invalido
+	if(!usuario) {
+		req.flash('error', 'El formulario ya no es valido, intenta de nuevo');
+		return res.redirect('/reestablecer-password')
+
+	}
+
+	// Asignar nuevo password, limpiar valores previos
+	usuario.password = req.body.password;
+	usuario.token = undefined;
+	usuario.expira = undefined;
+
+	// agregar y eliminar valores del objeto
+	await usuario.save();
+
+	// redirigir
+	req.flash('correcto', 'Password Modificado Correctamente');
+	res.redirect('/iniciar-sesion')
+
+
+}
